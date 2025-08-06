@@ -174,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                     hintText: 'Search for bulbs, wires, …',
                     prefixIcon: const Icon(Icons.search),
                     filled: true,
-                    fillColor: colorScheme.surfaceContainerHighest,
+                    fillColor: colorScheme.surfaceVariant,
                     contentPadding: const EdgeInsets.symmetric(vertical: 0),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -309,7 +309,7 @@ class _HorizontalCategory extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color bg = active
         ? colorScheme.primary
-        : colorScheme.surfaceContainerHighest;
+        : colorScheme.surfaceVariant;
     final Color iconColor = active ? colorScheme.onPrimary : colorScheme.primary;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -337,7 +337,7 @@ class _CategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: colorScheme.surfaceContainerHighest,
+      color: colorScheme.surfaceVariant,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -442,7 +442,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           // side category list
           Container(
             width: 100,
-            color: colorScheme.surfaceContainerHighest,
+            color: colorScheme.surfaceVariant,
             child: ListView.builder(
               itemCount: widget.subcategories.length,
               itemBuilder: (context, i) {
@@ -516,7 +516,7 @@ class _ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: colorScheme.surfaceContainerHighest,
+      color: colorScheme.surfaceVariant,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -1701,7 +1701,7 @@ class ProductDetail extends StatelessWidget {
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SellerProfilePage())),
             child: Card(
-              color: colorScheme.surfaceContainerHighest,
+              color: colorScheme.surfaceVariant,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -1723,7 +1723,7 @@ class ProductDetail extends StatelessWidget {
           const SizedBox(height: 16),
           // Specifications
           Card(
-            color: colorScheme.surfaceContainerHighest,
+            color: colorScheme.surfaceVariant,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(16),
