@@ -1,0 +1,54 @@
+name: Build and Deploy WASM Flutter App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.32.8'
+        channel: 'stable'
+
+    - name: Enable Web
+      run: flutter config --enable-web
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Build Web (WASM)
+      run: flutter build web --dart-define=FLUTTER_WEB_USE_SKIA=true --release
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: web-build
+        path: build/web/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: web-build
+        path: build/web/
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/web
+        force_orphan: true 
