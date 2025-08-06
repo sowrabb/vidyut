@@ -754,7 +754,7 @@ class _SearchScreenState extends State<SearchScreen> {
       },
       child: Card(
         elevation: 0,
-        color: colorScheme.surfaceContainerHighest,
+        color: colorScheme.surfaceVariant,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
