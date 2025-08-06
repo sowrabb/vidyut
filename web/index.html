@@ -60,19 +60,17 @@
   <script>
     // Hide loading indicator when Flutter is ready
     window.addEventListener('load', function() {
-      // This will be called when Flutter WASM is loaded
-      if (window.flutter_web_optimizer) {
-        window.flutter_web_optimizer.loadEntrypoint({
-          serviceWorker: {
-            serviceWorkerVersion: serviceWorkerVersion,
-          },
-          onEntrypointLoaded: function(engineInitializer) {
-            engineInitializer.initializeEngine().then(function(appRunner) {
-              document.getElementById('loading').style.display = 'none';
-              appRunner.runApp();
-            });
+      // Wait for Flutter to be available
+      if (window.flutter_inappwebview) {
+        // For in-app webview
+        document.getElementById('loading').style.display = 'none';
+      } else {
+        // For regular web
+        setTimeout(function() {
+          if (document.getElementById('loading')) {
+            document.getElementById('loading').style.display = 'none';
           }
-        });
+        }, 3000); // Hide loading after 3 seconds as fallback
       }
     });
   </script>
